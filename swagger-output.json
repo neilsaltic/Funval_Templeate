@@ -11,6 +11,19 @@
     "http"
   ],
   "paths": {
+    "/api/productos": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "tags": [
