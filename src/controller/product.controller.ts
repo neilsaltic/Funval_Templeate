@@ -64,3 +64,19 @@ export async function putProduct(req: Request, res: Response) {
     res.status(500).json({ error: error.message });
   }
 }
+export async function deleteProducts(req: Request, res: Response) {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).json({ error: "EL ID DEBE SER UN VALOR NUMERICO" });
+    }
+    const productEliminado = await ProductModel.delete(id);
+    if (productEliminado) {
+      res.status(200).json({ message: "producto eliminado exitosamente" });
+    } else {
+      res.status(404).json({ message: "producto no encontrado" });
+    }
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+}

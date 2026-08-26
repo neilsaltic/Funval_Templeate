@@ -50,4 +50,11 @@ export const ProductModel = {
     );
     return rows[0] || null;
   },
+  delete: async (id: number): Promise<boolean> => {
+    const { rowCount } = await pool.query(
+      "DELETE FROM producto WHERE id = $1;",
+      [id],
+    );
+    return (rowCount ?? 0) > 0;
+  },
 };
