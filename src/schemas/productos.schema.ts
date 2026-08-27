@@ -14,3 +14,5 @@ export const createProductoSchema = z.object({
     .number({ message: "El precio es Obligatorio" })
     .positive("El precio debe de ser mayor a 0"),
 });
+
+export const updateProductSchema = createProductoSchema.partial();
