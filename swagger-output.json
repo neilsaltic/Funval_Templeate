@@ -24,8 +24,12 @@
         }
       }
     },
-    "/api/productos/": {
+    "/api/clientes/": {
       "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Ver a todos los Clientes",
         "description": "",
         "responses": {
           "200": {
@@ -37,6 +41,175 @@
         }
       },
       "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Crear un nuevo Cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "telefono": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/clientes/{id}": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Ver a a un Cliente por su ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "actualizar un cliente existente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del cliente a actualizar"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos a actualizar del Producto",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Pedro"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "pedro@example.com"
+                },
+                "telefono": {
+                  "type": "string",
+                  "example": "+591 78963254"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Eliminar un Cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/productos/": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Ver todos los Productos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Crear un nuevo Producto",
         "description": "",
         "parameters": [
           {
@@ -73,6 +246,10 @@
     },
     "/api/productos/{id}": {
       "get": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Ver todos los Productos por ID",
         "description": "",
         "parameters": [
           {
@@ -95,13 +272,41 @@
         }
       },
       "put": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "actualizar un producto existente",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID del producto a actualizar"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos a actualizar del Producto",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Pan"
+                },
+                "descripcion": {
+                  "type": "string",
+                  "example": "xxxxxxxxx"
+                },
+                "precio": {
+                  "type": "number",
+                  "example": 100
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -120,6 +325,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Productos"
+        ],
+        "summary": "Eliminar un producto",
         "description": "",
         "parameters": [
           {

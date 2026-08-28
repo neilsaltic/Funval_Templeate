@@ -1,19 +1,20 @@
 import type { Request, Response, NextFunction } from "express";
 import {
-  createProductoSchema, // ✅ Cambia el nombre del schema
-  updateProductSchema, // ✅ Cambia el nombre del schema
-} from "../schemas/productos.schema.js"; // ✅ Cambia la ruta
+  createCustomerSchema,
+  updateCustomerSchema,
+} from "../schemas/cliente.schema.js";
 
-export function postValidateProduct(
+//Validación para CREAR cliente
+export function postValidateCustomer(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const resultado = createProductoSchema.safeParse(req.body);
+  const resultado = createCustomerSchema.safeParse(req.body);
   if (!resultado.success) {
     const errores = resultado.error.issues.map((err) => ({
       campo: err.path.join("."),
-      mensaje: err.message,
+      mensaje: err.message, //
     }));
     return res
       .status(400)
@@ -22,16 +23,17 @@ export function postValidateProduct(
   next();
 }
 
-export function updateValidateProduct(
+//Validación para ACTUALIZAR cliente
+export function updateValidateCustomer(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const resultado = updateProductSchema.safeParse(req.body);
+  const resultado = updateCustomerSchema.safeParse(req.body);
   if (!resultado.success) {
     const errores = resultado.error.issues.map((err) => ({
       campo: err.path.join("."),
-      mensaje: err.message,
+      mensaje: err.message, //
     }));
     return res
       .status(400)
