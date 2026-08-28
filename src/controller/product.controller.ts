@@ -2,6 +2,8 @@ import type { Request, Response } from "express";
 import { ProductModel } from "../model/product.model.js";
 
 export async function getProducts(req: Request, res: Response) {
+  // #swagger.tags = ['Productos']
+  // #swagger.summary = 'Ver todos los Productos'
   try {
     const product = await ProductModel.findAll();
     res.json({ totalProductos: product.length, data: product });
@@ -14,10 +16,12 @@ export async function getProducts(req: Request, res: Response) {
 }
 
 export async function getProductsById(req: Request, res: Response) {
+  // #swagger.tags = ['Productos']
+  // #swagger.summary = 'Ver todos los Productos por ID'
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) {
-      res.status(400).json({ error: "el ud debe ser numerico" });
+      res.status(400).json({ error: "el id debe ser numerico" });
       return;
     }
     const product = await ProductModel.findById(id);
@@ -32,6 +36,8 @@ export async function getProductsById(req: Request, res: Response) {
 }
 
 export async function postProduct(req: Request, res: Response) {
+  // #swagger.tags = ['Productos']
+  // #swagger.summary = 'Crear un nuevo Producto'
   try {
     const { nombre, descripcion, precio } = req.body;
     const newProduct = await ProductModel.create({
@@ -46,6 +52,26 @@ export async function postProduct(req: Request, res: Response) {
 }
 
 export async function putProduct(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Productos']
+    #swagger.summary = 'actualizar un producto existente'
+    #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'ID del producto a actualizar',
+      required: true,
+      type: 'integer'
+    }
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Datos a actualizar del Producto',
+      required: true,
+      schema: {
+        nombre: "Pan",
+        descripcion:"xxxxxxxxx",
+        precio: 100
+      }
+    }
+  */
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) {
@@ -62,6 +88,8 @@ export async function putProduct(req: Request, res: Response) {
   }
 }
 export async function deleteProducts(req: Request, res: Response) {
+  // #swagger.tags = ['Productos']
+  // #swagger.summary = 'Eliminar un producto'
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) {
