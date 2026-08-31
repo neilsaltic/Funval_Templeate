@@ -24,6 +24,179 @@
         }
       }
     },
+    "/api/pedidos/": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Ver todos los Pedidos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Crear un nuevo Pedido",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del nuevo Pedido",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_producto": {
+                  "type": "number",
+                  "example": 1
+                },
+                "id_cliente": {
+                  "type": "number",
+                  "example": 2
+                },
+                "fecha": {
+                  "type": "string",
+                  "example": "2026-08-30"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pedidos/{id}": {
+      "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Ver un Pedido por su ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Actualizar un Pedido existente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del Pedido a actualizar"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos a actualizar del Pedido",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id_producto": {
+                  "type": "number",
+                  "example": 3
+                },
+                "id_cliente": {
+                  "type": "number",
+                  "example": 5
+                },
+                "fecha": {
+                  "type": "string",
+                  "example": "2026-09-01"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Eliminar un Pedido",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/clientes/": {
       "get": {
         "tags": [
@@ -234,9 +407,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"

@@ -2,10 +2,10 @@ import z from "zod";
 
 export const createCustomerSchema = z.object({
   nombre: z
-    .string({ message: "El Nombre es Obligatorio" })
+    .string({ message: "El Nombre es Obligatorio y debe ser Letras" })
     .trim()
     .min(3, "el Nombre debe de ser minimo de 3 caracteres"),
-  email: z.email({ message: "El email es requerido" }).trim(),
+  email: z.email({ message: "El email no es valido" }).trim(),
   telefono: z
     .string()
     .trim()

@@ -1,12 +1,13 @@
 import type { Request, Response } from "express";
 import { ProductModel } from "../model/product.model.js";
+import { productService } from "../services/product.services.js";
 
 export async function getProducts(req: Request, res: Response) {
   // #swagger.tags = ['Productos']
   // #swagger.summary = 'Ver todos los Productos'
   try {
-    const product = await ProductModel.findAll();
-    res.json({ totalProductos: product.length, data: product });
+    const result = await productService.getProductFilter(req.query);
+    res.json(result);
   } catch (error) {
     console.error("error al consultar PostgreSQL: ");
     res.status(500).json({
