@@ -1,15 +1,15 @@
 import type { Request, Response, NextFunction } from "express";
 import {
-  createProductoSchema,
-  updateProductSchema,
-} from "../schemas/productos.schema.js";
+  createPedidoSchema,
+  updatePedidoSchema,
+} from "../schemas/pedido.schema.js";
 
-export function postValidateProduct(
+export function postValidatePedido(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const resultado = createProductoSchema.safeParse(req.body);
+  const resultado = createPedidoSchema.safeParse(req.body);
   if (!resultado.success) {
     const errores = resultado.error.issues.map((err) => ({
       campo: err.path.join("."),
@@ -22,12 +22,12 @@ export function postValidateProduct(
   next();
 }
 
-export function updateValidateProduct(
+export function updateValidatePedido(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const resultado = updateProductSchema.safeParse(req.body);
+  const resultado = updatePedidoSchema.safeParse(req.body);
   if (!resultado.success) {
     const errores = resultado.error.issues.map((err) => ({
       campo: err.path.join("."),
